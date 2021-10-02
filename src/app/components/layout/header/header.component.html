@@ -1,0 +1,47 @@
+<!--
+<div class="header">
+  <div class="navbar-brand" style="margin: 1.2rem;">
+    <a routerLink="/">Recipe Book</a>
+  </div>
+
+  <div style="display: flex; margin-right: 2rem;">
+    <a routerLink="/recipe" routerLinkActive="active" *ngIf="isAuthenticated">Recipes</a>
+    <a routerLink="/auth" routerLinkActive="active" *ngIf="!isAuthenticated">Authenticate</a>
+    <a *ngIf="isAuthenticated" (click)="onLogout()">Logout</a>
+    <a routerLink="/shopping-list" routerLinkActive="active">Shopping List</a>
+  </div>
+
+  <div *ngIf="isAuthenticated">
+    <a (click)="onSaveData()">Save Data</a>
+    <a (click)="onLoadData()">Load Data</a>
+  </div>
+
+</div> -->
+
+<mat-toolbar class="mat-elevation-z2" style="position: sticky; top:0px; z-index: 2;" color="primary">
+  <div fxHide.gt-xs>
+    <button mat-icon-button (click)="onToggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+  <div>
+    <a routerLink="/">Recipe Book</a>
+  </div>
+  <div style="font-size: large;" fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
+    <ul fxLayout fxLayoutGap="20px" class="navigation-items">
+      <li><a routerLink="/recipe" routerLinkActive="active" *ngIf="isAuthenticated">Recipes</a></li>
+      <li><a routerLink="/auth" routerLinkActive="active" *ngIf="!isAuthenticated">Authenticate</a></li>
+      <li><a *ngIf="isAuthenticated" (click)="onLogout()">Logout</a></li>
+      <li><a routerLink="/shopping-list" routerLinkActive="active">Shopping List</a></li>
+    </ul>
+  </div>
+  <div style="margin-left: 10px;" *ngIf="isAuthenticated" fxHide.xs>
+    <!-- <a mat-button [matMenuTriggerFor]="menu">Manage<mat-icon>arrow_drop_down</mat-icon></a> -->
+    <button style="font-size: large;" mat-button [matMenuTriggerFor]="menu">Manage<mat-icon>arrow_drop_down</mat-icon></button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="onLoadData()">Load Data</button>
+      <button mat-menu-item (click)="onSaveData()">Save Data</button>
+    </mat-menu>
+  </div>
+
+</mat-toolbar>

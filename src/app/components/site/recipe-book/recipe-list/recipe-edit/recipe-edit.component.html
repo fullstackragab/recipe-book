@@ -1,0 +1,158 @@
+<div class='container'>
+  <mat-dialog-content>
+
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="10px">
+
+      <div class="buttons" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px">
+        <button mat-raised-button color="primary" type="submit" mat-dialog-close [disabled]="form.invalid">Save</button>
+        <button type="button" mat-raised-button color="warn" mat-dialog-close (click)="onCancel()">Cancel</button>
+      </div>
+
+      <mat-form-field>
+        <input matInput placeholder="Name" type="text" style="width: 30rem;" id="name" formControlName="name" #name>
+      </mat-form-field>
+      <div>
+        <button mat-stroked-button type="button" (click)='imagePicker.click()'>Pick Image</button>
+        <input type="file" (change)='onImagePicked($event)' #imagePicker>
+      </div>
+      <div class='image-preview' *ngIf="imagePreview !== '' && imagePreview">
+        <img [src]="imagePreview" [alt]="form.value.title">
+      </div>
+      <!-- <mat-form-field>
+        <input matInput placeholder="Image URL" type="text" style="width: 30rem;" id="imagePath"
+          formControlName="imagePath" #imagePath>
+      </mat-form-field>
+      <img [src]="imagePath.value" alt="{{ name.value }}"> -->
+      <mat-form-field>
+        <textarea matInput placeholder="Description" type="text" class="form-control" id="description" rows="6"
+          formControlName="description"></textarea>
+
+      </mat-form-field>
+
+      <div formArrayName="ingredients">
+        <div *ngFor="let control of controls; let i = index" [formGroupName]="i">
+          <div class="ingredient-row">
+            <mat-form-field class="ingredient-name">
+              <input matInput placeholder="Name" type="text" formControlName="name">
+            </mat-form-field>
+            <mat-form-field class="ingredient-amount">
+              <input matInput placeholder="Amount" type="number" formControlName="amount">
+            </mat-form-field>
+            <button mat-icon-button (click)="onDeleteIngredient(i)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </div>
+        <button mat-raised-button style="margin-bottom: 30px; margin-left: 15px;" color="primary" type="button"
+          (click)="onAddIngredient()">Add Ingredient</button>
+      </div>
+    </form>
+
+
+
+  </mat-dialog-content>
+</div>
+<!-- <div style='height:50px;'></div> -->
+
+
+
+<!-- <div class="row" style="margin-bottom: 5rem;">
+    <div class="col-xs-12">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-xs-12" style="width: 30rem;">
+                    <button
+                      type="submit"
+                      style="width: 6rem; margin-left: 5rem; margin-right: 5rem;"
+                      class="btn btn-success"
+                      [disabled]="!form.valid">Save</button>
+                    <button
+                      type="button"
+                      style="width: 6rem; margin: 1rem;"
+                      class="btn btn-danger"
+                      (click)="onCancel()">Cancel</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          style="width: 30rem;"
+                          id="name"
+                          formControlName="name"
+                          #name>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label for="imagePath">Image URL</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          style="width: 30rem;"
+                          id="imagePath"
+                          formControlName="imagePath"
+                          #imagePath>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12">
+                <img [src]="imagePath.value" alt="{{ name.value }}" class="img-responsive" style="width: 30rem;">
+              </div>
+          </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea
+                          type="text"
+                          class="form-control"
+                          style="width: 30rem;"
+                          id="description"
+                          rows="6"
+                          formControlName="description"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12" formArrayName="ingredients">
+                    <div
+                      class="row"
+                      *ngFor="let control of controls; let i = index"
+                      [formGroupName]="i">
+                        <div class="col-xs-8" style="margin-top: 10px; margin-left: 15px;">
+                            <input
+                              type="text"
+                              class="form-control"
+                              style="width: 22rem;"
+                              formControlName="name">
+                        </div>
+                        <div class="col-xs-2" style="width: 4rem; margin-top: 10px; margin-left: 13px;">
+                            <input
+                              type="number"
+                              class="form-control"
+                              formControlName="amount">
+                        </div>
+                        <div class="col-xs-2" style="margin-top: 10px; margin-left: 13px;">
+                            <button
+                              (click)="onDeleteIngredient(i)"
+                              class="btn btn-danger">X</button>
+                        </div>
+                    </div>
+                    <hr>
+                    <button
+                      class="btn btn-success"
+                      type="button"
+                      (click)="onAddIngredient()">Add Ingredient</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div> -->

@@ -1,0 +1,12 @@
+<section style="margin-top: 15px;" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="15px">
+
+  <span class="mat-title">Shopping List</span>
+  <div fxLayout="column" fxLayoutAlign="center start">
+    <app-shopping-edit></app-shopping-edit>
+
+    <mat-list style="margin-top: 15px;" fxLayout="column" fxLayoutAlign="space-between start">
+      <app-shopping-item *ngFor="let ingredient of (ingredients$ | async); let i = index;" [index]="i"
+        [ingredient]="ingredient"></app-shopping-item>
+    </mat-list>
+  </div>
+</section>

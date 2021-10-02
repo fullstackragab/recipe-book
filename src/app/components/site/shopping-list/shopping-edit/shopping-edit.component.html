@@ -1,0 +1,17 @@
+<section style="margin-top: 15px;" >
+  <form (ngSubmit)="onSubmit()" #f="ngForm" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px" >
+      <mat-form-field>
+        <input matInput placeholder="Name" type="text" id="name" ngModel name="name" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Amount" type="number" id="amount" ngModel name="amount" required pattern="^[1-9]+[0-9]*$">
+      </mat-form-field>
+
+    <div fxLayout="row" fxLayoutGap="10px">
+      <button mat-raised-button color="primary" type="submit"
+        [disabled]="f.invalid">{{ editMode ? 'Update' : 'Add'}}</button>
+      <button mat-raised-button color="warn" *ngIf="editMode" (click)="onDelete()" type="button">Delete</button>
+      <button mat-raised-button color="primary" (click)="onClear()" type="button">Clear</button>
+    </div>
+  </form>
+</section>
